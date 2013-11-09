@@ -1,0 +1,23 @@
+
+	<h1><%= @story.title %></h1>
+	<%= @story.when %>
+	<%= @story.description %>
+	<%= @story.source %>
+	<%= @story.created_at %>
+
+
+	<h2>Comments</h2>
+	<%= render @story.comments %>
+
+
+	<h2>Add a comment:</h2>
+	<%= render "comments/form" %>
+
+
+
+
+<%= link_to 'Back to Stories', stories_path %>
+<%= link_to 'Edit Story', edit_story_path(@story) %>
+
+
+
