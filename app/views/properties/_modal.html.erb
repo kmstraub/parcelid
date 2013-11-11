@@ -1,10 +1,16 @@
-
-
-<div class="container">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Add New Story</h4>
+  </div>
+  <div class="modal-body">
+       <div class="container">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#about" data-toggle="tab">About</a></li>
         <li><a href="#events" data-toggle="tab">Events</a></li>
-        <li><a href="#story" data-toggle="tab">Add a story</a></li>
+        <li><a href="#facts" data-toggle="tab">Facts</a></li>
       </ul>
       <div class="tab-content properties-information">
         <div class="tab-pane active" id="about">
@@ -22,11 +28,13 @@
               <div class="col-xs-6 col-sm-8 ">
                 <% @property.stories.where(:story_type => [2]).each do |story| %>
               <ul class="media-list">
-                <li class="media well">
+                <li class="media">
                   <div class="media-body">
-                      <h4 class="media-heading"><%= story.title %></h4>
-                        <p><%= story.description %></p>
-                      <small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
+                    <ul class="list-group ">
+                      <li class="list-group-item"><h4 class="media-heading"><%= story.title %></h4>
+                        <p><%= story.description %></p></li>
+                      <li class="list-group-item "><small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></li>
+                   </ul>
                   </div>
                 </li>
               </ul>
@@ -46,11 +54,13 @@
             <div class="panel-body">
              <% @property.stories.where(:story_type => [1]).each do |story| %>
               <ul class="media-list">
-                <li class="media well">
+                <li class="media">
                   <div class="media-body">
-                      <h4 class="media-heading"><%= story.title %></h4>
-                        <p><small><%= story.when %></small></p><p><%= story.description %></p>
-                      <small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
+                    <ul class="list-group">
+                      <li class="list-group-item"><h4 class="media-heading"><%= story.title %></h4>
+                        <p><small><%= story.when %></small></p><p><%= story.description %></p></li>
+                      <li class="list-group-item"><small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></li>
+                  </ul>
                 </div>
                 </li>
               </ul>
@@ -58,7 +68,7 @@
             </div>
           </div><!--/panel-->
         </div>
-        <div class="tab-pane" id="story">
+        <div class="tab-pane" id="facts">
         <div class="panel panel-default">
             <div class="panel-heading">
               
@@ -95,8 +105,8 @@
           </div><!--/panel-->
         </div>
   </div><!--/container-->
-
-
-
-
-
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
