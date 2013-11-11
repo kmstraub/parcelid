@@ -7,8 +7,39 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">ParcelID</a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+      	<%= form_tag('/search', method: "get") do %>
+      		<% label_tag(:q, "Search") %>
+      		<%= text_field_tag(:q) %>
+      </div>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+      
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+<div class="container">
+	
+
 
 <%= yield %>
+</div>
+<br>
+<br>
+</footer>
+<p>&copy; ParcelID 2013</p>
+</footer>
 
 </body>
 </html>

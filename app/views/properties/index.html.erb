@@ -1,11 +1,23 @@
 <h1>Properties</h1>
-<% @properties.each do |property| %>
-	<%= property.address %>
-	<%= property.address_2 %>
-	<%= property.city %>
-	<%= property.state %>
-	<%= property.zip %>
-
-	<% end %>
-
-	<%= link_to 'Create New Property', new_property_path %>
+<div class="panel panel-default">
+	<div class="panel-body">
+		
+		<div class="media">
+			<% @properties.each do |property| %>
+  		<div class="media-body well">
+  		  <h4 class="media-heading"><%= link_to(property.address, "/properties/#{property.id}") %>
+			<%= property.address_2 %>
+		  </h4>
+				<%= property.city %>
+				<%= property.state %>
+				<%= property.zip %>
+  		</div>
+ 			 <% end %>
+		</div>
+		<%= link_to 'Create New Property', new_property_path, :class => 'btn btn-default btn-lg' %>
+	</div>
+</div>
+<div class="jumbotron">
+  <h1>Map</h1>
+  
+</div>

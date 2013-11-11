@@ -3,10 +3,9 @@ Parcelid::Application.routes.draw do
   root "welcome#index"
   
 resources :properties do
-	resources :stories
+	resources :stories do
+		resources :comments
 end
-resources :stories do
-	resources :comments
 end
 
 end
