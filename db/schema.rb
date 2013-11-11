@@ -11,13 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131109185217) do
-
-  create_table "categories", force: true do |t|
-    t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20131110004656) do
 
   create_table "comments", force: true do |t|
     t.string   "commenter"
@@ -29,6 +23,19 @@ ActiveRecord::Schema.define(version: 20131109185217) do
 
   add_index "comments", ["story_id"], name: "index_comments_on_story_id"
 
+  create_table "properties", force: true do |t|
+    t.string   "address"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "neighborhood"
+    t.string   "county"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "stories", force: true do |t|
     t.date     "when"
     t.string   "title"
@@ -36,9 +43,8 @@ ActiveRecord::Schema.define(version: 20131109185217) do
     t.string   "source"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_id"
+    t.string   "story_type"
+    t.integer  "property_id"
   end
-
-  add_index "stories", ["category_id"], name: "index_stories_on_category_id"
 
 end

@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row">
+   <div class="col-xs-12 col-sm-6 col-md-8">
+     <div class="well">
+        <h1><%= @property.name %><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %><br>
+              <%=@property.neighborhood %>  <%= @property.county %></h1>
+          </div>
+          <div class="jumbotron">
+          </div>
+         
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
+        <li><a href="#facts" data-toggle="tab">Facts</a></li>
+        <li><a href="#photos" data-toggle="tab">Photos</a></li>
+      </ul>
+      <div class="tab-content properties-information">
+        <div class="tab-pane active" id="timeline">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <%= link_to "Add New Story", new_property_story_path(@property), :class => 'pull-right btn btn-default btn-xs' %>
+             <h3 class="panel-title">Events</h3>
+            </div>
+            <div class="panel-body">
+             <% @property.stories.where(:story_type => [1]).each do |story| %>
+              <ul class="media-list">
+                <li class="media">
+                  <div class="media-body">
+                    <ul class="list-group">
+                      <li class="list-group-item"><h4 class="media-heading"><%= story.title %></h4>
+                        <p><small><%= story.when %></small></p><p><%= story.description %></p></li>
+                      <li class="list-group-item"><small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></li>
+                  </ul>
+                  
+                </div>
+                </li>
+              </ul>
+              <% end %>
+            </div>
+          </div><!--/panel-->
+        </div>
+        <div class="tab-pane" id="facts">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <%= link_to "Add New Story", new_property_story_path(@property), :class => 'pull-right btn btn-default btn-xs' %>
+             <h3 class="panel-title">Facts</h3>
+            </div>
+            <div class="panel-body">
+             <% @property.stories.where(:story_type => [2]).each do |story| %>
+              <ul class="media-list">
+                <li class="media">
+                  <div class="media-body">
+                    <ul class="list-group">
+                      <li class="list-group-item"><h4 class="media-heading"><%= story.title %></h4>
+                        <p><%= story.description %></p></li>
+                      <li class="list-group-item"><small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></li>
+                  </ul>
+                  
+                </div>
+                </li>
+              </ul>
+              <% end %>
+            </div>
+          </div><!--/panel-->
+        </div>
+        <div class="tab-pane" id="photos">...</div>
+      </div>
+         
+
+
+
+    </div><!--/mainbar-->
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+            <a href="#" class="list-group-item">Link</a>
+          </div>
+
+        </div><!--/sidebar-->
+
+  </div><!--/row-->
+  
+
+              
+      <hr>
+
+      <footer>
+        <p>© Company 2013</p>
+      </footer>
+  </div><!--/container-->
+
+
+
+
+

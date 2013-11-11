@@ -2,13 +2,15 @@ Parcelid::Application.routes.draw do
   get "welcome/index"
   root "welcome#index"
   
-
-    resources :stories do
-    resources :comments
+resources :properties do
+	resources :stories
+end
+resources :stories do
+	resources :comments
+end
 
 end
 
-  resources :categories
 
 
-end
+

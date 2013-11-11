@@ -1,8 +1,50 @@
-<h1>Create a Story</h1>
+
+<div class="row">
+  
+  <div class="col-xs-12 col-sm-6 col-md-8 story_form">
+    
+    <h1>New Story</h1>
+    <div class="form-horizontal"><%= form_for([@property, @property.stories.build]) do |f| %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title"><%= select(:story, :story_type, [['Event', 1], ['Fact', 2]]) %> Please select what type of story you would like to create.</h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="col-sm-2 control-label"><%= f.label :title, "Title" %></div>
+          <div class="col-sm-10"><%= f.text_field :title, :class => 'form-control' %></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2 control-label"><%= f.label :when, "Date of Story" %></div>
+           <div class="col-sm-10"><%= f.date_field :when, :class => 'form-control' %></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2 control-label"><%= f.label :description, "Description" %></div>
+          <div class="col-sm-10"><%= f.text_area :description, :class => 'form-control' %></div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-2 control-label"><%= f.label :source, "Source url" %></div>
+          <div class="col-sm-10"><%= f.text_field :source, :class => 'form-control' %></div>
+        </div>
+      </div>
+      <div class="form_add"><%= f.submit "Add", :class => 'btn btn-default btn-lg' %>
+      </div>
+    <% end %>
+  </div>
+  </div>
+  
+  <div class="col-xs-6 col-md-4">
+
+  </div>
+
+</div>
 
 
-<%= render 'form' %>
 
 
-<%= link_to "Back", stories_path %>
 
+
+
+
+              
