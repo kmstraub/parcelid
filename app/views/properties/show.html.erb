@@ -2,19 +2,31 @@
   <div class="row">
    <div class="col-xs-12 col-sm-6 col-md-8">
      <div class="well">
-        <h1><%= @property.name %><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %><br>
-              <%=@property.neighborhood %>  <%= @property.county %></h1>
+        <h1><%= @property.name %><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %></h1>
           </div>
           <div class="jumbotron">
           </div>
          
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#timeline" data-toggle="tab">Timeline</a></li>
+        <li class="active"><a href="#about" data-toggle="tab">About</a></li>
+        <li><a href="#events" data-toggle="tab">Events</a></li>
         <li><a href="#facts" data-toggle="tab">Facts</a></li>
-        <li><a href="#photos" data-toggle="tab">Photos</a></li>
       </ul>
       <div class="tab-content properties-information">
-        <div class="tab-pane active" id="timeline">
+        <div class="tab-pane active" id="about">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+             <h3 class="panel-title">About</h3>
+            </div>
+            <div class="panel-body">
+              
+                <%=@property.neighborhood %>
+                <%= @property.county %>
+              
+            </div>
+          </div><!--/panel-->
+        </div>
+        <div class="tab-pane" id="events">
           <div class="panel panel-default">
             <div class="panel-heading">
               <%= link_to "Add New Story", new_property_story_path(@property), :class => 'pull-right btn btn-default btn-xs' %>
@@ -30,8 +42,7 @@
                         <p><small><%= story.when %></small></p><p><%= story.description %></p></li>
                       <li class="list-group-item"><small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></li>
                   </ul>
-                 
-
+                  
                 </div>
                 </li>
               </ul>
@@ -40,7 +51,7 @@
           </div><!--/panel-->
         </div>
         <div class="tab-pane" id="facts">
-          <div class="panel panel-default">
+        <div class="panel panel-default">
             <div class="panel-heading">
               <%= link_to "Add New Story", new_property_story_path(@property), :class => 'pull-right btn btn-default btn-xs' %>
              <h3 class="panel-title">Facts</h3>
@@ -55,15 +66,14 @@
                         <p><%= story.description %></p></li>
                       <li class="list-group-item"><small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></li>
                   </ul>
-                  
+                 
+
                 </div>
                 </li>
               </ul>
               <% end %>
             </div>
-          </div><!--/panel-->
-        </div>
-        <div class="tab-pane" id="photos">...</div>
+          </div><!--/panel--></div>
       </div>
          
 
