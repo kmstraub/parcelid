@@ -1,6 +1,6 @@
 
 
-<div class="container">
+
       <ul class="nav nav-tabs">
         <li class="active"><a href="#about" data-toggle="tab">About</a></li>
         <li><a href="#events" data-toggle="tab">Events</a></li>
@@ -15,7 +15,7 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-xs-6 col-sm-4">
-               <%= @property.name %><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %>
+               <strong><%= @property.name %><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %></strong>
                <%= @property.neighborhood %>
                 <%= @property.county %>
               </div>
@@ -24,9 +24,13 @@
               <ul class="media-list">
                 <li class="media well">
                   <div class="media-body">
-                      <h4 class="media-heading"><%= story.title %></h4>
-                        <p><%= story.description %></p>
-                      <small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
+                      <h4 class="media-heading"></h4>
+                        <blockquote>
+                          <p><%= story.when %></p>
+                          <p><%= story.description %></p>
+                          <small><cite title="Source Title"><%= story.source %></cite></small>
+                        </blockquote>
+                      <%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
                   </div>
                 </li>
               </ul>
@@ -48,9 +52,13 @@
               <ul class="media-list">
                 <li class="media well">
                   <div class="media-body">
-                      <h4 class="media-heading"><%= story.title %></h4>
-                        <p><small><%= story.when %></small></p><p><%= story.description %></p>
-                      <small>Source: <%= story.source %></small><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
+                      <h4 class="media-heading"></h4>
+                        <blockquote>
+                          <p><%= story.when %></p>
+                          <p><%= story.description %></p>
+                          <small><cite title="Source Title"><%= story.source %></cite></small>
+                        </blockquote>
+                      <%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
                 </div>
                 </li>
               </ul>
@@ -94,7 +102,6 @@
             </div>
           </div><!--/panel-->
         </div>
-  </div><!--/container-->
 
 
 

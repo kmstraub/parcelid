@@ -14,6 +14,24 @@ class StoriesController < ApplicationController
 		redirect_to property_path(@property)
 	end
 
+	def edit
+		@property = Property.find(params[:property_id])
+		@story = @property.stories.find(params[:id])
+	end
+
+	def update
+		@property = Property.find(params[:property_id])
+		@story = @property.stories.find(params[:id])
+
+		if @story.update(story_params)
+			redirect_to property_path(@property)
+
+		else
+			render 'edit'
+		end
+	end
+
+
 	def destroy
 		@property = Property.find(params[:property_id])
 		@story = @property.stories.find(params[:id])

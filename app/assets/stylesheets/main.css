@@ -8,3 +8,20 @@
 .form_add {
 	margin: 2em;
 }
+
+a, a:link, .media-heading a {
+	color: #c83539;
+}
+
+#submit_tag {
+	background-color: #c83539;
+	border-color: #c83539;
+}
+
+.container {
+	width: 760px;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}

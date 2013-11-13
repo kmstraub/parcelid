@@ -5,7 +5,8 @@
 		<div class="media">
 			<% @properties.each do |property| %>
   		<div class="media-body well">
-  		  <h4 class="media-heading" ><a href="" data-toggle="modal" data-target="#myModal"><%= link_to(property.address, "/properties/#{property.id}") %></a>
+  		  <h4 class="media-heading" >
+  		  	<%= link_to(property.address, "/properties/#{property.id}") %></a>
 			<%= property.address_2 %>
 		  </h4>
 				<%= property.city %>
