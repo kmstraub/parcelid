@@ -25,3 +25,27 @@ a, a:link, .media-heading a {
 	margin-right: auto;
 	margin-left: auto;
 }
+.modal-storyheader .nav-tabs {
+	border-bottom: 0;
+}
+.modal-storyheader {
+	min-height: 16.428571429px;
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.btn-red {
+	color: #fff;
+	background-color: #c83539;
+	border-color: #c83539;
+}
+
+header {
+	box-shadow: 1px 4px 3px rgba(0,0,0,0.5);
+	padding-left: 10%;
+	padding-bottom: 10px;
+}
+.container {
+	padding: 20px;
+}

@@ -1,109 +1,103 @@
+<!-- Modal -->
+<!-- Button trigger modal -->
+<button class="btn btn-red btn-lg" data-toggle="modal" data-target="#myModal"><%= @property.name %><%= @property.address %> <%= @property.address_2 %><br><%= @property.city %>, <%=@property.state %>  <%= @property.zip %>
+</button>
 
 
 
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#about" data-toggle="tab">About</a></li>
-        <li><a href="#events" data-toggle="tab">Events</a></li>
-        <li><a href="#story" data-toggle="tab">Add a story</a></li>
-      </ul>
-      <div class="tab-content properties-information">
-        <div class="tab-pane active" id="about">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-             <h3 class="panel-title">About</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-xs-6 col-sm-4">
-               <strong><%= @property.name %><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %></strong>
-               <%= @property.neighborhood %>
-                <%= @property.county %>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-storyheader" id="story-details">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#details" data-toggle="tab">Details</a></li>
+            <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+            <li><a href="#story" data-toggle="tab">Add a story</a></li>
+        </ul>
+
+      </div>
+      <div class="modal-body">
+        
+        <div class="tab-content properties-information">
+          <div class="tab-pane active" id="details">
+            <div class="row">
+              <div class="left_details col-md-4">
+                <strong><%= @property.name %><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %></strong><br><%= @property.neighborhood %> <%= @property.county %>
               </div>
-              <div class="col-xs-6 col-sm-8 ">
-                <% @property.stories.where(:story_type => [2]).each do |story| %>
-              <ul class="media-list">
-                <li class="media well">
-                  <div class="media-body">
-                      <h4 class="media-heading"></h4>
-                        <blockquote>
-                          <p><%= story.when %></p>
-                          <p><%= story.description %></p>
-                          <small><cite title="Source Title"><%= story.source %></cite></small>
-                        </blockquote>
-                      <%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
-                  </div>
-                </li>
-              </ul>
-              <% end %>
-              </div>
-            </div>
-            </div>
-          </div><!--/panel-->
-          
-        </div>
-        <div class="tab-pane" id="events">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              
-             <h3 class="panel-title">Events</h3>
-            </div>
-            <div class="panel-body">
-             <% @property.stories.where(:story_type => [1]).each do |story| %>
-              <ul class="media-list">
-                <li class="media well">
-                  <div class="media-body">
-                      <h4 class="media-heading"></h4>
-                        <blockquote>
-                          <p><%= story.when %></p>
-                          <p><%= story.description %></p>
-                          <small><cite title="Source Title"><%= story.source %></cite></small>
-                        </blockquote>
-                      <%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
+              <div class="col-md-8">
+                  <% @property.stories.where(:story_type => [2]).each do |story| %>
+                  <ul class="media-list">
+                    <li class="media">
+                      <div class="media-body">
+                          <h4 class="media-heading"></h4>
+                            <blockquote>
+                              <p><%= story.when %></p>
+                              <p><%= story.description %></p>
+                              <small><cite title="Source Title"><%= story.source %></cite></small>
+                            </blockquote>
+                          <%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %>
+                      </div>
+                    </li>
+                  </ul>
+                  <% end %>
                 </div>
-                </li>
+              </div>
+            </div>
+            <div class="tab-pane" id="timeline">
+              <% @property.stories.where(:story_type => [1]).each do |story| %>
+              <ul class="media-list">
+                <li class="media">  
+                  <div class="media-body well">
+                      <div class="media-heading"><%= story.when %><br><%= story.description %></div>
+                          
+                          <p><small>Source: <%= story.source %></small></p>
+                          <p><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></p>
+                </div>
+               </li>
               </ul>
               <% end %>
             </div>
-          </div><!--/panel-->
-        </div>
-        <div class="tab-pane" id="story">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-              
-              <h3 class="panel-title">Add a story</h3>
-            </div>
-            <div class="panel-body">
+            <div class="tab-pane" id="story">
              <div class="form-horizontal"><%= form_for([@property, @property.stories.build]) do |f| %>
 
       
-          <div class="well"> Do you have a story to add? Please select: <%= select(:story, :story_type, [['Event', 1], ['Fact', 2]]) %></div>
-      
-      
-
-        <div class="form-group">
-          <div class="col-sm-2 control-label"><%= f.label :when, "Date of Story" %></div>
-           <div class="col-sm-10"><%= f.date_field :when, :class => 'form-control' %></div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-2 control-label"><%= f.label :description, "Description" %></div>
-          <div class="col-sm-10"><%= f.text_area :description, :class => 'form-control' %></div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-2 control-label"><%= f.label :source, "Source url" %></div>
-          <div class="col-sm-10"><%= f.text_field :source, :class => 'form-control' %></div>
-        </div>
-
-      </div>
-      <div class="form_add"><%= f.submit "Add", :class => 'pull-right btn btn-default btn-lg ' %>
-      </div>
-    <% end %>
-  
+              <div class="well"> Do you have a story to add? Please select: <%= select(:story, :story_type, [['Event', 1], ['Fact', 2]]) %></div>
+              <div class="form-group">
+                <div class="col-sm-2 control-label"><%= f.label :when, "Date of Story" %></div>
+                 <div class="col-sm-10"><%= f.date_field :when, :class => 'form-control' %></div>
               </div>
+              <div class="form-group">
+                <div class="col-sm-2 control-label"><%= f.label :description, "Description" %></div>
+                <div class="col-sm-10"><%= f.text_area :description, :class => 'form-control' %></div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-2 control-label"><%= f.label :source, "Source url" %></div>
+                <div class="col-sm-10"><%= f.text_field :source, :class => 'form-control' %></div>
+              </div>
+              <div class="form_add"><%= f.submit "Add", :class => 'btn btn-default btn-lg' %>
+              </div>
+                <% end %>
             </div>
-          </div><!--/panel-->
+
+          </div>
+
+
         </div>
+      </div>
+    
+
+      <div class="modal-footer">
+        
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+        
 
 
 
-
-
+        
