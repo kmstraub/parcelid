@@ -1,12 +1,56 @@
+<!--  start Google maps code -->
+ <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUt9keauvaYZOxOlddq6PLkSsuqbH-tn4&sensor=true">
+</script>
+<script type="text/javascript">
+
+
+
+function initialize() {
+
+  var mapOptions = {
+    center: new google.maps.LatLng(38.376115, -97.844667),
+    zoom: 4,
+    mapTypeId:google.maps.MapTypeId.HYBRID
+  };
+
+    var map = new google.maps.Map(document.getElementById("map-canvas"),
+    mapOptions);
+
+// To add many markers to array to the map, use the 'map' property
+               
+    var myMarkers = [];
+    <% @properties.each do |p| %>
+    myMarkers.push(new google.maps.LatLng(<%= p.latitude %>, <%= p.longitude %>));
+    <% end %>
+
+    var i, newMarker;
+    for (i = 0; i < myMarkers.length; i++) {
+      newMarker = new google.maps.Marker({
+        position: (myMarkers[i]),
+        map: map,
+        draggable: true
+      });
+
+      newMarker.setVisible(true);
+      }
+    }
+        
+      //  end of initialize
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<!-- end Google Maps code -->
+
 <h1>Properties</h1>
-<div class="panel panel-default">
-	<div class="panel-body">
+
+<div id= "map-canvas"></div>
+
 		
 		<div class="media">
 			<% @properties.each do |property| %>
   		<div class="media-body well">
   		  <h4 class="media-heading" >
-  		  	<%= link_to(property.address, "/properties/#{property.id}") %></a>
+  		  	<%= link_to(property.address, "/properties/#{property.id}") %>
 			<%= property.address_2 %>
 		  </h4>
 				<%= property.city %>
@@ -16,9 +60,9 @@
  			 <% end %>
 		</div>
 		<%= link_to 'Create New Property', new_property_path, :class => 'btn btn-default btn-lg' %>
-	</div>
-</div>
-<div class="jumbotron", id: "map-canvas">
-  <h1>Map</h1>
-  
-</div>
+	
+
+
+ 
+
+

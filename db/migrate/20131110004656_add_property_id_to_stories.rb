@@ -1,5 +1,5 @@
-class AddPropertyIdToStories < ActiveRecord::Migration
+class AddStorytypeToStories < ActiveRecord::Migration
   def change
-  	add_column :stories, :property_id, :integer
+  	add_column :properties, :latitude, :float, :longitude, :float
   end
 end

@@ -1,3 +1,17 @@
+body { padding-top: 40px; }
+@media screen and (max-width: 768px) {
+	body ( padding-top: 0px; }
+		)
+}
+
+.modal-dialog {
+	width: 60% !important;
+
+}
+
+
+
+
 .properties-information .panel {
 	margin: 1em 0;
 }
@@ -48,4 +62,23 @@ header {
 }
 .container {
 	padding: 20px;
+}
+#map-canvas {
+	margin-top: 20px;
+	height:500px;
+	width:100%;
+}
+
+#modal-button {
+	margin-left: 35%;
+}
+
+.address-details {
+	margin-bottom: 20px;
+	padding: 10px;
+}
+
+.modal-footer {
+	background-color: #c83539;
+	border-radius: 0 0 4px 4px;
 }

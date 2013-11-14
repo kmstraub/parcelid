@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131110004656) do
+ActiveRecord::Schema.define(version: 20131113194722) do
 
   create_table "comments", force: true do |t|
     t.string   "commenter"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20131110004656) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "stories", force: true do |t|
