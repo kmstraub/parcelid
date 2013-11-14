@@ -8,10 +8,15 @@ class StoriesController < ApplicationController
 
 	def create
 		@property = Property.find(params[:property_id])
+
 		@story = @property.stories.create(story_params)
 		@story = Story.new(story_type: 2)
-
-		redirect_to property_path(@property)
+		if @story.save
+			redirect_to property_path(@property)
+		else
+			flash[:error] = "Problem!"
+			redirect_to property_path(@property)
+		end
 	end
 
 	def edit
@@ -20,7 +25,7 @@ class StoriesController < ApplicationController
 	end
 
 	def update
-		@property = Property.find(params[:property_id])
+		@property =Property.find(params[:property_id])
 		@story = @property.stories.find(params[:id])
 
 		if @story.update(story_params)
@@ -44,5 +49,4 @@ def story_params
 	params.require(:story).permit(:story_type, :when, :title, :description, :source, :property_id)
 end
 
-
-	end
+end
