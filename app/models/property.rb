@@ -4,8 +4,6 @@ class Property < ActiveRecord::Base
 	
 	extend ::Geocoder::Model::ActiveRecord
 
-	
-
 	def full_address
 		[address, city, state, zip].compact.join(', ')
 	end
@@ -13,4 +11,11 @@ class Property < ActiveRecord::Base
 
 	after_validation :geocode
 
+	def self.search(search)
+		if search 
+			find(:all, :conditions => ['city LIKE ?', "%#{search}%"])
+		else
+			find(:all)
+		end
+	end
 end

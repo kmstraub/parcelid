@@ -9,8 +9,27 @@ body { padding-top: 40px; }
 
 }
 
+.filter-bar {
+	box-shadow: 1px 4px 3px rgba(0,0,0,0.5);
+	padding: 30px;
+	margin-top: -30px;
+	background-color: white;
+	border: 1px solid gray;
+}
+.search-box {
+	margin-top: 5px;
+}
 
 
+.search-form {
+	width: 30%;
+	display: block;
+}
+.search-label {
+	font-size: 18px;
+	font-weight: bold;
+
+}
 
 .properties-information .panel {
 	margin: 1em 0;

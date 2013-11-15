@@ -1,33 +1,33 @@
 <!--  start Google maps code -->
- <script type="text/javascript"
+<script type="text/javascript"
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUt9keauvaYZOxOlddq6PLkSsuqbH-tn4&sensor=false">
 </script>
 <script type="text/javascript">
 
 
 
-function initialize() {
-  var myLatLng = new google.maps.LatLng(<%= @property.latitude %>,<%= @property.longitude %>);
-  var mapOptions = {
-    center: myLatLng,
-    zoom: 20,
-    mapTypeId:google.maps.MapTypeId.HYBRID
-  };
+  function initialize() {
+    var myLatLng = new google.maps.LatLng(<%= @property.latitude %>,<%= @property.longitude %>);
+    var mapOptions = {
+      center: myLatLng,
+      zoom: 20,
+      mapTypeId:google.maps.MapTypeId.HYBRID
+    };
 
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
-    mapOptions);
+      var map = new google.maps.Map(document.getElementById("map-canvas"),
+      mapOptions);
 
 
-// To add the marker to the map, use the 'map' property
-  
-    var marker = new google.maps.Marker({
-     position: myLatLng,
-      map:map,
-       draggable:true,
-      animation:google.maps.Animation.DROP,
-    });
+  // To add the marker to the map, use the 'map' property
     
-}
+      var marker = new google.maps.Marker({
+       position: myLatLng,
+        map:map,
+         draggable:true,
+        animation:google.maps.Animation.DROP,
+      });
+      
+  }
 
       //  end of initialize
       google.maps.event.addDomListener(window, 'load', initialize);
@@ -39,13 +39,11 @@ function initialize() {
 
 <!-- Modal -->
 <!-- Button trigger modal -->
+
 <button class="btn btn-red btn-lg"  id="modal-button" data-toggle="modal" data-target="#myModal"><%= @property.name %><%= @property.address %> <%= @property.address_2 %><br><%= @property.city %>, <%=@property.state %>  <%= @property.zip %>
 </button>
 
 <div id="map-canvas"></div>
-
-
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -57,10 +55,8 @@ function initialize() {
             <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
             <li><a href="#story" data-toggle="tab">Add a story</a></li>
         </ul>
-
       </div>
       <div class="modal-body">
-        
         <div class="tab-content properties-information">
           <div class="tab-pane active" id="details">
             <div class="row">
@@ -70,7 +66,6 @@ function initialize() {
                 <div class='btn btn-default btn-xs'><%= link_to 'Edit Property Details', edit_property_path(@property) %>
                 </div>
               </div>
-              
               <div class="col-md-8">
                   <% @property.stories.where(:story_type => [2]).each do |story| %>
                   <ul class="media-list">
@@ -87,31 +82,29 @@ function initialize() {
                     </li>
                   </ul>
                   <% end %>
-                </div>
               </div>
             </div>
+          </div>
             <div class="tab-pane" id="timeline">
               <% @property.stories.where(:story_type => [1]).each do |story| %>
               <ul class="media-list">
                 <li class="media">  
                   <div class="media-body well">
-                      <div class="media-heading"><p><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></p><%= story.when %></div>
-                          <p><%= story.description %></p>
-                          <p><small>Source: <%= story.source %></small></p>
-                          
+                    <div class="media-heading"><p><%= link_to 'Delete Story', [story.property, story],  method: :delete, data: { confirm: 'Are you sure?' }, :class => 'pull-right btn btn-default btn-xs' %></p><%= story.when %>
+                    </div>
+                    <p><%= story.description %></p>
+                    <p><small>Source: <%= story.source %></small></p>    
                 </div>
-               </li>
+                </li>
               </ul>
               <% end %>
             </div>
-            <div class="tab-pane" id="story">
-             <div class="form-horizontal"><%= form_for ([@property, @property.stories.build]) do |f| %>
-
-      
+          <div class="tab-pane" id="story">
+            <div class="form-horizontal"><%= form_for ([@property, @property.stories.build]) do |f| %>
               <div class="well"> Do you have a story to add? Please select: <%= select(:story, :story_type, [['Event', 1], ['Fact', 2]]) %></div>
               <div class="form-group">
                 <div class="col-sm-2 control-label"><%= f.label :when, "Date of Story" %></div>
-                 <div class="col-sm-10"><%= f.date_field :when, :class => 'form-control' %></div>
+                <div class="col-sm-10"><%= f.date_field :when, :class => 'form-control' %></div>
               </div>
               <div class="form-group">
                 <div class="col-sm-2 control-label"><%= f.label :description, "Description" %></div>
@@ -125,17 +118,10 @@ function initialize() {
               </div>
                 <% end %>
             </div>
-
           </div>
-
-
         </div>
       </div>
-    
-
-      <div class="modal-footer">
-        
-      </div>
+      <div class="modal-footer"></div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

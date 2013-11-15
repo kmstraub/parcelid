@@ -1,68 +1,72 @@
 <!--  start Google maps code -->
- <script type="text/javascript"
+  <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUt9keauvaYZOxOlddq6PLkSsuqbH-tn4&sensor=true">
-</script>
-<script type="text/javascript">
+  </script>
+  <script type="text/javascript">
 
 
 
-function initialize() {
+    function initialize() {
 
-  var mapOptions = {
-    center: new google.maps.LatLng(38.376115, -97.844667),
-    zoom: 4,
-    mapTypeId:google.maps.MapTypeId.HYBRID
-  };
+      var mapOptions = {
+        center: new google.maps.LatLng(38.376115, -97.844667),
+        zoom: 4,
+        mapTypeId:google.maps.MapTypeId.HYBRID
+      };
 
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
-    mapOptions);
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+        mapOptions);
 
-// To add many markers to array to the map, use the 'map' property
-               
-    var myMarkers = [];
-    <% @properties.each do |p| %>
-    myMarkers.push(new google.maps.LatLng(<%= p.latitude %>, <%= p.longitude %>));
-    <% end %>
+    // To add many markers to array to the map, use the 'map' property
+                   
+      var myMarkers = [];
+        <% @properties.each do |p| %>
+        myMarkers.push(new google.maps.LatLng(<%= p.latitude %>, <%= p.longitude %>));
+        <% end %>
 
-    var i, newMarker;
-    for (i = 0; i < myMarkers.length; i++) {
-      newMarker = new google.maps.Marker({
-        position: (myMarkers[i]),
-        map: map,
-        draggable: true
-      });
+      var i, newMarker;
+        for (i = 0; i < myMarkers.length; i++) {
+          newMarker = new google.maps.Marker({
+            position: (myMarkers[i]),
+            map: map,
+            draggable: true
+          });
 
-      newMarker.setVisible(true);
-      }
+        newMarker.setVisible(true);
+        }
     }
-        
-      //  end of initialize
+  //  end of initialize
       google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+
+
+  </script>
 <!-- end Google Maps code -->
+<div class="filter-bar">
+  <form class="form-inline" role="form"><%= form_tag properties_path, :method => 'get' do %>
+    <div class="form-group row">
+      <div class="col-sm-2 search-label">Find a property.
+      </div>
+      <div class="col-sm-6 search-box"><%= text_field_tag :search, params[:search], placeholder: "e.g. Los Angeles, Miami, New York", :class => 'form-control' %>
+      </div>
+      <div class="col-sm-4"><%= submit_tag "Search by city", :city => nil, :class => "btn btn-default btn-lg" %>
+      </div>
+      <% end %>
+    </div>
+  </forrm>
+</div>
 
-<h1>Properties</h1>
-
-<div id= "map-canvas"></div>
-
+<div class="media"> 
+  	<% @properties.each do |property| %>
+  	<div class="media-body well">
+  	  <h4 class="media-heading"><%= link_to(property.address, "/properties/#{property.id}") %><%= property.address_2 %></h4>
+    		<%= property.city %>
+    		<%= property.state %>
+    		<%= property.zip %>
+  	</div>
+	<% end %>
+</div>
 		
-		<div class="media">
-			<% @properties.each do |property| %>
-  		<div class="media-body well">
-  		  <h4 class="media-heading" >
-  		  	<%= link_to(property.address, "/properties/#{property.id}") %>
-			<%= property.address_2 %>
-		  </h4>
-				<%= property.city %>
-				<%= property.state %>
-				<%= property.zip %>
-  		</div>
- 			 <% end %>
-		</div>
-		<%= link_to 'Create New Property', new_property_path, :class => 'btn btn-default btn-lg' %>
-	
+<div id= "map-canvas"></div>
 
 
  
-
-
