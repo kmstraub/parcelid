@@ -40,7 +40,7 @@
 <!-- Modal -->
 <!-- Button trigger modal -->
 
-<button class="btn btn-red btn-lg"  id="modal-button" data-toggle="modal" data-target="#myModal"><%= @property.name %><%= @property.address %> <%= @property.address_2 %><br><%= @property.city %>, <%=@property.state %>  <%= @property.zip %>
+<button class="btn btn-red btn-lg"  id="modal-button" data-toggle="modal" data-target="#myModal"><strong><%= @property.name %></strong><br><%= @property.address %> <%= @property.address_2 %><br><%= @property.city %>, <%=@property.state %>  <%= @property.zip %>
 </button>
 
 <div id="map-canvas"></div>
@@ -61,7 +61,7 @@
           <div class="tab-pane active" id="details">
             <div class="row">
               <div class="left-details col-md-4">
-                <div class="address-details"><strong><%= @property.name %><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %></strong><br><%= @property.neighborhood %> <%= @property.county %>
+                <div class="address-details"><strong><%= @property.name %><br><%= @property.address %> <%= @property.address_2 %><%= @property.city %>, <%=@property.state %>  <%= @property.zip %></strong><br><%= @property.neighborhood %> <%= @property.county %>
                 </div>
                 <div class='btn btn-default btn-xs'><%= link_to 'Edit Property Details', edit_property_path(@property) %>
                 </div>

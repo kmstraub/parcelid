@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Parcelid</title>
+      <title>parcelid</title>
       <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
       <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
       <%= csrf_meta_tags %>
@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
          
-         <li class="active"><%=link_to "Home", welcome_index_path %></li>
+         <li><%=link_to "Home", welcome_index_path %></li>
          <li><%= link_to "Map", properties_path %></li>
         </ul>
         
@@ -20,14 +20,14 @@
       </div><!-- /.navbar-collapse -->
     </nav>
     <header>
-      <h1>parcelID<a href="#"></a><br><small>Discover your home's story.</small></h1>
+      <div class="heading"><h1>parcelID<a href="#"></a><br><small>Discover your home's story.</small></h1></div>
     </header>
     <div class="container">
       <%= yield %>
     </div>
     <br>
     <br>
-    </footer>
+    <footer>
       <p>&copy; ParcelID 2013</p>
     </footer>
   </body>
